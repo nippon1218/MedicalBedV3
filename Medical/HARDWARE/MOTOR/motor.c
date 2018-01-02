@@ -4662,7 +4662,7 @@ void Uart_Motor_6_2_START(u8 dir,u32 pulse)
 /*********************************************************************
 *函数名       ：MotorStart()
 *函数功能     ：坐便器袋子收紧前推杆驱动，
-*输入         ：MotorID-电机ID，dir-方向，定时器重装载值arr(自动重装载值)，psc(分频值)
+*输入         ：MotorID-电机ID，dir-方向，定时器重装载值arr(自动重装载值)
 *输出         ：无
 ***********************************************************************/
 void MotorStart(u8 MotorID,u8 dir,u16 arr)
@@ -4671,6 +4671,8 @@ void MotorStart(u8 MotorID,u8 dir,u16 arr)
 	{
 		case 1:
 			Motor_1_START(dir);
+			
+			
 			break;
 		case 2:
 			Push_Rod_Start(dir);

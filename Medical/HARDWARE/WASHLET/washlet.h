@@ -9,7 +9,6 @@
 #define Up 1
 #define Down 0
 
-
 void WashLetAuto_V1(u8 dir,u16 arr);
 
 void WashLet_V1(u8 dir,u16 arr);

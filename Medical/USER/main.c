@@ -87,7 +87,6 @@ int main(void)
 	LED0=0;
 	LED1=0;	
 //	IO_TEST();
-
 //			washlet_flag=1;
 //			RELAY6=1; 
 //			Uart_Push_Rod_Swash(0,25000);  //≥Âœ¥∫Ê∏…Õ∆∏ÀÀıªÿ

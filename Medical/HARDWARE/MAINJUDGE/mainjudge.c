@@ -1011,6 +1011,21 @@ void Usart2ReceiveJudge(void)
 			Uart_Back();
 		}
 
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BackUpNew"))    //支背上,例如BackUpNew+85
+		{
+			u32 BackUpParam;
+			BackUpParam=usmart_strnum2(USART2_RX_BUF);
+			BackRun(1,BackUpParam%100);		
+		}
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BackDownNew"))           //支背下,例如BackUpNew+85
+		{
+			u32 BackDownParam;
+			BackDownParam=usmart_strnum2(USART2_RX_BUF);
+			BackRun(0,BackDownParam%100);	
+		}
+	
+		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegUpUpPhone"))            //上曲腿上
 		{
 			Uart_Leg_Up();
