@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\USER;..\HALLIB\STM32F4xx_HAL_Driver\Inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\24CXX;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\LED;..\HARDWARE\SPI;..\HARDWARE\TIMER;..\HARDWARE\W25QXX;..\MALLOC;..\USMART;..\FATFS\exfuns;..\FATFS\src;..\TEXT;..\ATK_ESP8266;..\HARDWARE\PWM;..\HARDWARE\MOTOR;..\HARDWARE\FUNCTION;..\HARDWARE\ADC;..\HARDWARE\PCF8574;..\HARDWARE\DS18B20;..\UCOSIII\uC-CPU;..\UCOSIII\uC-LIB;..\UCOSIII\UCOS-BSP;..\UCOSIII\UCOS-CONFIG;..\UCOSIII\uCOS-III\Source;..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView;..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView;..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView;..\HARDWARE\CHECK;..\MODBUS_MASTER;..\HARDWARE\NAND;..\HARDWARE\PUMP;..\HARDWARE\HX711;E:\MDK5\ARM\ARMCC\include;..\HARDWARE\VK3214;D:\anzhuangruanjian\KEIL5\ARM\ARMCC;..\HARDWARE\MOTOR;..\HARDWARE\CHECK;..\SYSTEM\sys;D:\anzhuangruanjian\KEIL5\ARM\ARMCC\include;..\HARDWARE\HANG;..\HARDWARE\WASHLET;..\HARDWARE\RESET;..\HARDWARE\MAINJUDGE</IncludePath>
+              <IncludePath>..\CORE;..\USER;..\HALLIB\STM32F4xx_HAL_Driver\Inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\24CXX;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\LED;..\HARDWARE\SPI;..\HARDWARE\TIMER;..\HARDWARE\W25QXX;..\MALLOC;..\USMART;..\FATFS\exfuns;..\FATFS\src;..\TEXT;..\ATK_ESP8266;..\HARDWARE\PWM;..\HARDWARE\MOTOR;..\HARDWARE\FUNCTION;..\HARDWARE\ADC;..\HARDWARE\PCF8574;..\HARDWARE\DS18B20;..\UCOSIII\uC-CPU;..\UCOSIII\uC-LIB;..\UCOSIII\UCOS-BSP;..\UCOSIII\UCOS-CONFIG;..\UCOSIII\uCOS-III\Source;..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView;..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView;..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView;..\HARDWARE\CHECK;..\MODBUS_MASTER;..\HARDWARE\NAND;..\HARDWARE\PUMP;..\HARDWARE\HX711;E:\MDK5\ARM\ARMCC\include;..\HARDWARE\VK3214;D:\anzhuangruanjian\KEIL5\ARM\ARMCC;..\HARDWARE\MOTOR;..\HARDWARE\CHECK;..\SYSTEM\sys;D:\anzhuangruanjian\KEIL5\ARM\ARMCC\include;..\HARDWARE\HANG;..\HARDWARE\WASHLET;..\HARDWARE\RESET;..\HARDWARE\MAINJUDGE;..\HARDWARE\BACKLEG</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -692,6 +692,11 @@
               <FileName>mainjudge.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\MAINJUDGE\mainjudge.c</FilePath>
+            </File>
+            <File>
+              <FileName>backleg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\BACKLEG\backleg.c</FilePath>
             </File>
           </Files>
         </Group>
