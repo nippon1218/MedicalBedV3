@@ -367,7 +367,7 @@ void LegDownRun(u8 dir,u8 angle)
 	//联锁功能，只有在左右翻身功能复位及下曲腿复位后才能进行上曲腿
 	if((body_left_flag==0)&&(body_right_flag==0)&&(leg_up_flag==0)&&(lock_flag==1))
 	{
-		if(dir==0)   //下曲腿下行
+		if(dir==1)   //下曲腿下行
 		{				
 			if(leg_angle_to_arr(angle)>leg_down_runed_arr)             //下行时，比较值为上行极限装载值与校准后的当量装载值的差值，两个差值不能为0
 			{
@@ -387,7 +387,7 @@ void LegDownRun(u8 dir,u8 angle)
 				leg_down_flag=1;
 			}	
 		}
-		if(dir==1)  //下曲腿上行
+		else if(dir==0)  //下曲腿上行
 		{
 			
 			if(leg_down_runed_arr>0)     //上行时，比较值为上行极限装载值与校准后的当量装载值的差值，两个差值不能为0

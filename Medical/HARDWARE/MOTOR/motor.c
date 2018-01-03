@@ -4879,7 +4879,7 @@ void BodyLeftRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 	u16 arr_now;
 	static u8 motor5_run_flag; 
   u8 breakflag;
-	
+
 	if((lock_flag==1)&&(back_flag==0)&&(body_right_flag==0)&&(leg_up_flag==0)&&(leg_down_flag==0)&&(washlet_flag==0)&&(desk_flag==0)&&(back_nursing_left_flag==0)&&(waist_nursing_left_flag==0))
 	{
 //		if((body_left_flag==0)&&(body_right_flag==0))
@@ -4970,9 +4970,10 @@ void BodyLeftRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 					TIM10_Init(body_left_runed_arr,timer10_freq);	
 				}
 			}
+			__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF);             // 清除中断标志位			
 			memset(USART2_RX_BUF,0,USART2_MAX_RECV_LEN);			
 			USART2_RX_LEN=0;
-			__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF);             // 清除中断标志位
+
 			if(((body_left_runed_arr!=body_angle_to_arr(Angle))&&(1==dir))||((0!=body_left_runed_arr)&&(0==dir)))
 			{
 				while(!(__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF)))  
@@ -5013,7 +5014,7 @@ void BodyLeftRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 							break;
 						}
 				}				
-				if((breakflag==0)||(dir==0))
+				if((breakflag==0)&&(dir==0))
 				{
 					GDCheckDealy(GD34S,300);
 					if(GDCheckAlm(GD34S,2))
@@ -5025,11 +5026,12 @@ void BodyLeftRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 				breakflag=0;				
 			//判断复位			
 			//if(((GD3_Start==0)||(GD4_Start)||(GD5_Start))&&(dir=0))
-				if((__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF))&&(dir=0))
+				if((__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF))&&(dir==0))
 				{
 					arr_now=0;
 					body_left_flag=0;
 				}	
+
 				else
 				{					
 					arr_now=__HAL_TIM_GET_COUNTER(&TIM10_Handler);    //获取当前计数值arr_now
@@ -5041,14 +5043,16 @@ void BodyLeftRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 				{
 					if((__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF)))
 					{
-						body_left_runed_arr=body_angle_to_arr(body_left_angle_lim);
+						body_left_runed_arr=body_angle_to_arr(Angle);
 						u2_printf("LeftEnd\r\n");
+						u2_printf("dir=1,时间到\r\n");
 						u2_printf("body_left_runed_arr=%d\r\n",body_left_runed_arr);
 					}
 					else
 					{
 						body_left_runed_arr=body_left_runed_arr+arr_now;
 						u2_printf("body_left_runed_arr=%d\r\n",body_left_runed_arr);
+						u2_printf("运行到这边了1\r\n");
 					}		
 				}	
 				else     //下行，脉冲-
@@ -5057,11 +5061,13 @@ void BodyLeftRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 					{
 						body_left_runed_arr=0;
 						u2_printf("body_left_runed_arr=%d\r\n",body_left_runed_arr);
+						u2_printf("运行到这边了2\r\n");
 					}
 					else
 					{
 						body_left_runed_arr=body_left_runed_arr-arr_now;	
-						u2_printf("body_left_runed_arr=%d\r\n",body_left_runed_arr);						
+						u2_printf("body_left_runed_arr=%d\r\n",body_left_runed_arr);	
+						u2_printf("运行到这边了3\r\n");						
 					}
 				}					
 				__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF);    //清除中断标志位				
@@ -5122,33 +5128,33 @@ void BodyRightRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 	u16 arr_now;
 	static u8 motor5_run_flag; 
   u8 breakflag;
-	if((lock_flag==1)&&(back_flag==0)&&(body_right_flag==0)&&(leg_up_flag==0)&&(leg_down_flag==0)&&(washlet_flag==0)&&(desk_flag==0)&&(back_nursing_left_flag==0)&&(waist_nursing_left_flag==0))
+	if((lock_flag==1)&&(back_flag==0)&&(body_left_flag==0)&&(leg_up_flag==0)&&(leg_down_flag==0)&&(washlet_flag==0)&&(desk_flag==0)&&(back_nursing_left_flag==0)&&(waist_nursing_left_flag==0))
 	{
-		if((body_left_flag==0)&&(body_right_flag==0))
-		{
-			if((GD3_Start==1)||(GD4_Start==1)||(GD5_Start==1)||(1==Motor5_Alm))
-			{
-				delay_us(100);
-				if((GD3_Start==1)||(GD4_Start==1)||(GD5_Start==1)||(1==Motor5_Alm))
-				{
-					err=1;
-					if(	GD3_Start==1)
-					{u2_printf("GD3SErr");BeepRun(2,300);}	
-					else if(GD4_Start==1)
-					{u2_printf("GD4SErr");BeepRun(2,300);}
-					else if(GD5_Start==1)
-					{u2_printf("GD4SErr");BeepRun(2,300);}
-				}
-			}
-			else
-			{err=0;}
-		}
-		else{err=0;}		
+//		if((body_left_flag==0)&&(body_right_flag==0))
+//		{
+//			if((GD3_Start==1)||(GD4_Start==1)||(GD5_Start==1)||(1==Motor5_Alm))
+//			{
+//				delay_us(100);
+//				if((GD3_Start==1)||(GD4_Start==1)||(GD5_Start==1)||(1==Motor5_Alm))
+//				{
+//					err=1;
+//					if(	GD3_Start==1)
+//					{u2_printf("GD3SErr");BeepRun(2,300);}	
+//					else if(GD4_Start==1)
+//					{u2_printf("GD4SErr");BeepRun(2,300);}
+//					else if(GD5_Start==1)
+//					{u2_printf("GD4SErr");BeepRun(2,300);}
+//				}
+//			}
+//			else
+//			{err=0;}
+//		}
+//		else{err=0;}		
 		if(err==0)
 		{
-			if((body_left_flag==0)&&(dir==1))  //如果复位到初始状态，才执行左翻起
+			if((body_right_flag==0)&&(dir==1))  //如果复位到初始状态，才执行左翻起
 			{
-				body_left_flag=1;
+				body_right_flag=1;
 				motor5_run_flag=1;
 				u2_printf("BodyRightStart");		delay_ms(200);		
 				MotorStart(5,0,motor_body_freq);
@@ -5202,7 +5208,7 @@ void BodyRightRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 			else if(dir==0)
 			{
 				u2_printf("345Down");
-				if(body_left_runed_arr>0)
+				if(body_right_runed_arr>0)
 				{
 					Motor345Start(1,M3Arr,M4Arr,motor_body_freq);
 					TIM10_Init(body_right_runed_arr,timer10_freq);	
@@ -5253,7 +5259,7 @@ void BodyRightRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 							break;
 						}
 				}				
-				if((breakflag==0)||(dir==0))
+				if((breakflag==0)&&(dir==0))
 				{
 					GDCheckDealy(GD34S,300);
 				}				
@@ -5261,7 +5267,7 @@ void BodyRightRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 				breakflag=0;				
 			//判断复位			
 			//if(((GD3_Start==0)||(GD4_Start)||(GD5_Start))&&(dir=0))
-				if((__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF))&&(dir=0))
+				if((__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF))&&(dir==0))
 				{
 					arr_now=0;
 					body_right_flag=0;
@@ -5308,7 +5314,7 @@ void BodyRightRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 					u2_printf("5号电机开始复位");
 					MotorStart(5,1,motor_body_freq);
 					
-					body_left_runed_arr=0;
+					body_right_runed_arr=0;
 					TIM10_Init(body_angle_to_arr(Angle),timer10_freq);                     //打开定时器				
 					__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF); // 清除中断标志位	
 					while(!(__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF) ) )
@@ -5341,7 +5347,6 @@ void BodyRightRun(u8 dir,u16 M3Arr,u16 M4Arr,u16 Angle)
 	else
 	{		LedAlm(300,"BodyRightInterfere");	}
 }
-
 
 
 /*********************************************************************

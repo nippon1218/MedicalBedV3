@@ -15,7 +15,7 @@
 #include "spi.h"
 #include "nand.h"
 #include "key.h"
-
+#include "backleg.h"
 
 void AllInit(void)
 {
@@ -1065,14 +1065,14 @@ void Usart2ReceiveJudge(void)
 		{
 			u32 LegDownParam;
 			LegDownParam=usmart_strnum2(USART2_RX_BUF);
-			LegDownRun(0,LegDownParam%100);	
+			LegDownRun(1,LegDownParam%100);	
 		}
 
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegDownUpNew"))           //支背下,例如BackUpNew+85
 		{
 			u32 LegDownParam;
 			LegDownParam=usmart_strnum2(USART2_RX_BUF);
-			LegDownRun(1,LegDownParam%100);	
+			LegDownRun(0,LegDownParam%100);	
 		}
 		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyLeftUpPhone"))         //左翻身上
@@ -1094,6 +1094,34 @@ void Usart2ReceiveJudge(void)
 		{
 			Uart_Body_Right();						
 		}						
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyLeftUpNew")) 	//BodyLeftUpNew+45     
+		{
+			u32 BdyLftUpPara;
+			BdyLftUpPara=usmart_strnum2(USART2_RX_BUF);		
+			BodyLeftRun(1,motor_body_freq,motor_body_freq,BdyLftUpPara%100);
+		}	
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyLeftDownNew")) //BodyLeftDownNew+45        
+		{
+			u32 BdyLftDwnPara;
+			BdyLftDwnPara=usmart_strnum2(USART2_RX_BUF);		
+			BodyLeftRun(0,motor_body_freq,motor_body_freq,BdyLftDwnPara%100);
+		}		
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyRightUpNew")) 	//BodyRightUpNew+45     
+		{
+			u32 BdyRhtUpPara;
+			BdyRhtUpPara=usmart_strnum2(USART2_RX_BUF);		
+			BodyRightRun(1,motor_body_freq,motor_body_freq,BdyRhtUpPara%100);
+		}	
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyRightDownNew")) //BodyightDownNew+45        
+		{
+			u32 BdyRhtDwnPara;
+			BdyRhtDwnPara=usmart_strnum2(USART2_RX_BUF);		
+			BodyRightRun(0,motor_body_freq,motor_body_freq,BdyRhtDwnPara%100);
+		}				
 		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"DeskUpPhone"))            //餐饮娱乐一体桌向前
 		{
@@ -1363,8 +1391,6 @@ void Usart2ReceiveJudge(void)
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"Hang1_1"))      //电机         
 		{
 			DG_Relay=1;		//继电器得电
-			delay_ms(300);
-			u2_printf("XINHAO");
 			Hang1Test(1);	  	
 			DG_Relay=0;		//继电器失电
 		}
@@ -1554,14 +1580,7 @@ void Usart2ReceiveJudge(void)
 			MOTOR777(0);	  				
 		}
 
-		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyLeftUpNew"))          
-		{
-			BodyLeftRun(1,motor_body_freq,motor_body_freq,45);
-		}	
-		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyLeftDownNew"))         
-		{
-			BodyLeftRun(0,motor_body_freq,motor_body_freq,45);
-		}			
+	
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"Nippon"))      //电机7         
 		{
 			if(UsartCheck2("Japan","Nippon"))
