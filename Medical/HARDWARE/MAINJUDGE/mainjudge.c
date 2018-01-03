@@ -1011,6 +1011,8 @@ void Usart2ReceiveJudge(void)
 			Uart_Back();
 		}
 
+		
+	/***新的支背调用函数***/
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BackUpNew"))    //支背上,例如BackUpNew+85
 		{
 			u32 BackUpParam;
@@ -1024,7 +1026,6 @@ void Usart2ReceiveJudge(void)
 			BackDownParam=usmart_strnum2(USART2_RX_BUF);
 			BackRun(0,BackDownParam%100);	
 		}
-	
 		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegUpUpPhone"))            //上曲腿上
 		{
@@ -1035,6 +1036,21 @@ void Usart2ReceiveJudge(void)
 		{
 			Uart_Leg_Up();					
 		}
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegUpUpNew"))           //支背下,例如BackUpNew+85
+		{
+			u32 LegUpParam;
+			LegUpParam=usmart_strnum2(USART2_RX_BUF);
+			LegUpRun(1,LegUpParam%100);	
+		}
+		
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegUpDownNew"))           //支背下,例如BackUpNew+85
+		{
+			u32 LegUpParam;
+			LegUpParam=usmart_strnum2(USART2_RX_BUF);
+			LegUpRun(0,LegUpParam%100);	
+		}
+			
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegDownDownPhone"))        //下曲腿下
 		{
 			Uart_Leg_Down();					
@@ -1045,6 +1061,20 @@ void Usart2ReceiveJudge(void)
 			Uart_Leg_Down();					
 		}
 
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegDownDownNew"))           //支背下,例如BackUpNew+85
+		{
+			u32 LegDownParam;
+			LegDownParam=usmart_strnum2(USART2_RX_BUF);
+			LegDownRun(0,LegDownParam%100);	
+		}
+
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"LegDownUpNew"))           //支背下,例如BackUpNew+85
+		{
+			u32 LegDownParam;
+			LegDownParam=usmart_strnum2(USART2_RX_BUF);
+			LegDownRun(1,LegDownParam%100);	
+		}
+		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"BodyLeftUpPhone"))         //左翻身上
 		{
 			Uart_Body_Left();						

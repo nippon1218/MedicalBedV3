@@ -18,3 +18,5 @@
 *.htm  
 *.TMP
 *._ia
+*.map
+Medical/OBJ/HAL_ESP8266_429.map

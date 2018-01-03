@@ -162,7 +162,8 @@ extern u16 washlet_arr_lim;                //坐便器运行下，计时器的arr（重装载值
 /****************吊挂康复训练脉冲值计算*******************/
 
 extern u16 back_runed_arr;                 //支背，调整后的自动重装载值
-
+extern u16 leg_up_runed_arr;
+extern u16 leg_down_runed_arr;
 //左肢
 extern u32 arm_left_runed;                 //相对起始位置已运行脉冲数   
 extern u32 arm_left_lim;                   //极限脉冲
