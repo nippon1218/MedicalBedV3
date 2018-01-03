@@ -24,17 +24,10 @@ WashLetMotorSXTG+0+17200	//冲洗烘干推杆缩回
 
 WashLetMotorSXDJ+1+20000	//冲洗烘干推杆伸出+坐便袋收紧电机收紧
 
-
-
-
-
-
-
-
-
-
-
-
+BackUpNew+85
+BackDownNew+85
+LegUpUpNew+30
+LegUpDownNew+30
 
 
 
