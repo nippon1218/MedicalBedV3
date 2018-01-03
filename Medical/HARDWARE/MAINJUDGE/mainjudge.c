@@ -1189,8 +1189,7 @@ void Usart2ReceiveJudge(void)
 		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"WashletAutoPhone"))        //自动坐便
 		{
-			//Uart_Washlet_Auto();			
-
+			//Uart_Washlet_Auto();
 			WashLet_V2(1,32950);
 		}
 		
@@ -1215,8 +1214,6 @@ void Usart2ReceiveJudge(void)
 			DIR_SB=0;
 		}
 				
-
-		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"Heat"))                    //加热
 		{
 			Heat();					
@@ -1244,7 +1241,6 @@ void Usart2ReceiveJudge(void)
 			washlet_flag=1;
 			Uart_Swash_Auto();	//自动冲洗					
 		}
-		
 	
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"Push_Rod_SwashUp"))        //冲洗烘干
 		{
