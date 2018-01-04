@@ -21,7 +21,7 @@ WashLetMotorCXHG+1+30000	//冲洗烘干推杆伸出
 WashLetMotorCXHG+0+30000	//冲洗烘干推杆缩回
 WashLetMotorSXTG+1+13000	//冲洗烘干推杆伸出
 WashLetMotorSXTG+0+17200	//冲洗烘干推杆缩回
-
+（WashLetMotorSXTG+1+17500，WashLetMotorSXTG+0+17500）
 WashLetMotorSXDJ+1+20000	//冲洗烘干推杆伸出+坐便袋收紧电机收紧
 
 BackUpNew+85

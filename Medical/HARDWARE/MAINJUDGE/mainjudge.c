@@ -1305,14 +1305,14 @@ void Usart2ReceiveJudge(void)
 		{
 			washlet_flag=1;
 			RELAY6=1;                       //继电器得电
-			Uart_Motor_6_2_START(0,17200);   //收线推杆缩回	
+			Uart_Motor_6_2_START(0,16500);   //收线推杆缩回	
 			RELAY6=0;             
 		}		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"Uart_Motor_6_2_START0"))      //坐便袋推杆          
 		{
 			washlet_flag=1;
 			RELAY6=1;             //继电器得电
-			Uart_Motor_6_2_START(1,13000);            //收线推杆伸出	
+			Uart_Motor_6_2_START(1,16500);            //收线推杆伸出	
 			RELAY6=0;           
 		}		
 

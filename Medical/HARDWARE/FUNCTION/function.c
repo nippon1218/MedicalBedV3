@@ -14427,7 +14427,7 @@ void Uart_Washlet_Tig(u8 dir)
 	u8 len;
 	RELAY6=1;                       //继电器得电，常开触点闭合，坐便袋扎紧电机得电
 	delay_ms(1000);		
-	Uart_Motor_6_2_START(1,13000);   //收线推杆伸出
+	Uart_Motor_6_2_START(1,17500);   //收线推杆伸出
 	u2_printf("Cartoon_Washlet_Tig_1");	
 	DIR6_1=dir;
 	Motor_6_1_START(3600-1,motor_timer_freq);                  //将坐便袋扎紧
@@ -14492,7 +14492,7 @@ void Uart_Washlet_Tig(u8 dir)
 	delay_ms(200);
 	u2_printf("Cartoon_Washlet_Tig_7");
 	delay_ms(1000);
-	Uart_Motor_6_2_START(0,17200);            //收线推杆缩回
+	Uart_Motor_6_2_START(0,17500);            //收线推杆缩回
     delay_ms(1000);	
 	RELAY6=0;                                //继电器复位，坐便袋扎紧电机断电
 }	
