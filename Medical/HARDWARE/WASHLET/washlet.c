@@ -283,25 +283,25 @@ void WashLet_V2(u8 dir,u16 arr)
 			if(washlet_flag==0)             //判断坐便是否处于复位状态，再进行坐便袋收紧
 			{									
 
-				washlet_flag=1;
-				RELAY6=1;
-				u2_printf("继电器得电\r\n");
+//				washlet_flag=1;
+//				RELAY6=1;
+//				u2_printf("继电器得电\r\n");
 				//继电器得电
-				Uart_Motor_6_2_START(1,21000);   //收线推杆伸出
-				u2_printf("收线推杆伸出\r\n");
-				RELAY6=0; 
-				u2_printf("继电器失电\r\n");
-				washlet_flag=0;
+				//Uart_Motor_6_2_START(1,21000);   //收线推杆伸出
+//				u2_printf("收线推杆伸出\r\n");
+//				RELAY6=0; 
+//				u2_printf("继电器失电\r\n");
+//				washlet_flag=0;
 							
 				delay_ms(100);
-				//Uart_Washlet_Tig(1);        //坐便袋收紧				
+				Uart_Washlet_Tig(1);        //坐便袋收紧				
 				//Uart_Washlet_Auto();        //再次调用该函数，使标志位取反，复位
-				washlet_flag=1;
-				RELAY6=1;
-				Uart_Motor_6_2_START(0,21000);   //收线推杆缩回
-				RELAY6=0;
-				washlet_flag=0;
-				u2_printf("收线推杆缩回\r\n");
+//				washlet_flag=1;
+//				RELAY6=1;
+//				Uart_Motor_6_2_START(0,21000);   //收线推杆缩回
+//				RELAY6=0;
+//				washlet_flag=0;
+//				u2_printf("收线推杆缩回\r\n");
 				
 				
 				//小桌子

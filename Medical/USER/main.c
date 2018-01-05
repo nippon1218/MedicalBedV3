@@ -75,7 +75,7 @@ int main(void)
 //		ESP8266_AP_Init(4);		
 //	}
 //PCF8574_WriteBit(EXIO1,0);
-//	ESP8266_AP_Init(4);	
+	ESP8266_AP_Init(4);	
 
 //清空串口2、串口WiFi接收寄存器
 	UART4_RX_LEN=0;      

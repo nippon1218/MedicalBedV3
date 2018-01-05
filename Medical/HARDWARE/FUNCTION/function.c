@@ -1088,11 +1088,8 @@ void Fun_Body_Left(void)
 				__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF); // 清除中断标志位
 				delay_ms(200);
 				u2_printf("Cartoon_Body_Left_Motor5_10");
-				delay_ms(200);
-				
+				delay_ms(200);				
 				Motor_4_Compensate(0,bodyleft_compleate,motor_body_freq,motor_timer_freq);	//调用补偿函数
-				
-				
 			}
 		}	
 		//翻身345号电机动作	
@@ -2630,7 +2627,7 @@ void Fun_Back_Nursing_Right(void)
 			u2_printf("Cartoon_Back_Nursing_Right_20");
 			delay_ms(200);
 		}		
-		Motor_3_START(motor_body_freq,motor_timer_freq);              //电机启动
+		Motor_3_START(motor_body_freq*1.4,motor_timer_freq);              //电机启动
 		TIM10_Init(body_right_runed_arr,timer10_freq);                //打开定时器
 		__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF);           //清除中断标志位	 	
 		while(!(__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF)))    //等待定时时间到，时间到跳出循环 
@@ -2832,7 +2829,7 @@ void Fun_Waist_Nursing_Left(void)
 			delay_ms(200);
 		}
 			
-		Motor_4_START(motor_body_freq,motor_timer_freq);             //电机启动
+		Motor_4_START((u16)(motor_body_freq*1.2),motor_timer_freq);             //电机启动
 		TIM10_Init(body_left_runed_arr,timer10_freq);                //打开定时器
 		__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF);          //清除中断标志位	 	
 		while(!(__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF)))   //等待定时时间到，时间到跳出循环 
@@ -3034,7 +3031,7 @@ void Fun_Waist_Nursing_Right(void)
 			delay_ms(200);
 		}
 			
-		Motor_4_START(motor_body_freq/1.5,motor_timer_freq);             //电机启动
+		Motor_4_START(motor_body_freq,motor_timer_freq);             //电机启动
 		TIM10_Init(body_right_runed_arr,timer10_freq);               //打开定时器
 		__HAL_TIM_CLEAR_FLAG(&TIM10_Handler, TIM_SR_CC1IF);          //清除中断标志位	 	
 		while(!(__HAL_TIM_GET_FLAG(&TIM10_Handler, TIM_SR_CC1IF)))   //等待定时时间到，时间到跳出循环
@@ -5223,6 +5220,7 @@ void GB_Body_Left(void)
 				delay_ms(200);
 				u2_printf("Cartoon_Body_Left_Motor5_10");
 				delay_ms(200);
+				Motor_4_Compensate(0,bodyleft_compleate,motor_body_freq,motor_timer_freq);	//调用补偿函数		
 			}	
 		}
 		memset(UART4_RX_BUF,0,UART4_MAX_RECV_LEN);			
@@ -5512,6 +5510,7 @@ void GB_Body_Left(void)
 			if((body_left_flag==0)&&(0==direct))     //345联动复位到初始状态，才复位5号电机
 			{			
 				//5号侧翻复位
+				Motor_4_Compensate(1,bodyleft_compleate,motor_body_freq,motor_timer_freq);
 				memset(UART4_RX_BUF,0,UART4_MAX_RECV_LEN);			
 				UART4_RX_LEN=0;
 				DIR5=0;
@@ -5785,6 +5784,7 @@ void GB_Body_Right(void)
 				delay_ms(200);
 				u2_printf("Cartoon_Body_Right_Motor5_10");
 				delay_ms(200);
+				Motor_4_Compensate(1,bodyright_compleate,motor_body_freq,motor_timer_freq);//调用补偿函数
 				}	
 			}
 			memset(UART4_RX_BUF,0,UART4_MAX_RECV_LEN);			
@@ -6075,6 +6075,7 @@ void GB_Body_Right(void)
 			if((body_right_flag==0)&&(0==direct))     //345联动复位到初始状态，才复位5号电机
 			{			
 				//5号侧翻复位
+				Motor_4_Compensate(0,bodyright_compleate,motor_body_freq,motor_timer_freq);//调用补偿函数
 				memset(UART4_RX_BUF,0,UART4_MAX_RECV_LEN);			
 				UART4_RX_LEN=0;
 				DIR5=1;
@@ -12563,8 +12564,6 @@ void LDUART2V2(void)
 	u2_printf("\r\n\r\n*****支背复位******\r\n\r\n");
 	WriteInUART2("BackDownPhone");
 	Uart_Back();                //支背复位
-
-
 		
 		Muscle_Massager();	
 		delay_ms(5000);delay_ms(2000);
@@ -14427,7 +14426,7 @@ void Uart_Washlet_Tig(u8 dir)
 	u8 len;
 	RELAY6=1;                       //继电器得电，常开触点闭合，坐便袋扎紧电机得电
 	delay_ms(1000);		
-	Uart_Motor_6_2_START(1,17500);   //收线推杆伸出
+	Uart_Motor_6_2_START(1,17000);   //收线推杆伸出
 	u2_printf("Cartoon_Washlet_Tig_1");	
 	DIR6_1=dir;
 	Motor_6_1_START(3600-1,motor_timer_freq);                  //将坐便袋扎紧
@@ -14492,7 +14491,7 @@ void Uart_Washlet_Tig(u8 dir)
 	delay_ms(200);
 	u2_printf("Cartoon_Washlet_Tig_7");
 	delay_ms(1000);
-	Uart_Motor_6_2_START(0,17500);            //收线推杆缩回
+	Uart_Motor_6_2_START(0,17000);            //收线推杆缩回
     delay_ms(1000);	
 	RELAY6=0;                                //继电器复位，坐便袋扎紧电机断电
 }	
