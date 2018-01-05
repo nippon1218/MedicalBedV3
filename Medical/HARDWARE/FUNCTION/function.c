@@ -14432,7 +14432,7 @@ void Uart_Washlet_Tig(u8 dir)
 	DIR6_1=dir;
 	Motor_6_1_START(3600-1,motor_timer_freq);                  //将坐便袋扎紧
 //	Motor_6_1_START(7200-1,motor_timer_freq); 
-	TIM2_Init(20000,timer10_freq);                              //打开定时器3500
+	TIM2_Init(25000,timer10_freq);                              //打开定时器3500
 	__HAL_TIM_CLEAR_FLAG(&TIM2_Handler, TIM_SR_CC1IF);         //清除中断标志位
 	while(!(__HAL_TIM_GET_FLAG(&TIM2_Handler, TIM_SR_CC1IF)))  //等待定时时间到
 	{

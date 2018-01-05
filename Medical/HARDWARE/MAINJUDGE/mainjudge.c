@@ -1316,6 +1316,23 @@ void Usart2ReceiveJudge(void)
 			RELAY6=0;           
 		}		
 
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"SxTgRepeat"))      //×ø±ã´üÍÆ¸Ë          
+		{
+			u8 RepeatNum;
+			u8 repeat;
+			u32 SxtgParam;
+			SxtgParam==usmart_strnum2(USART2_RX_BUF);
+			for(RepeatNum=0;RepeatNum<6;RepeatNum++)
+			{
+				MotorStart(9,1,SxtgParam%100000);
+				delay_ms(800);
+				MotorStart(9,0,SxtgParam%100000);
+				delay_ms(800);
+			}  
+			BeepRun(1,200);
+		}		
+		
+		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"WashLetMotor"))      //×ø±ã´üÍÆ¸Ë          
 		{
 			u32 WashLetMotorParam;
