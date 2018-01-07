@@ -1387,20 +1387,14 @@ void Usart2ReceiveJudge(void)
 		}
 
 
-		else if(strstr((const char *)USART2_RX_BUF,(const char *)"pcf1"))      //电机         
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"xzfp1"))      //电机         
 		{
-			PCF8574_WriteBit(EXIO1,1);	       //继电器
-			PCF8574_WriteBit(EXIO2,1);	       //继电器
-			PCF8574_WriteBit(EXIO3,1);	       //继电器
-			PCF8574_WriteBit(EXIO4,1);	       //继电器
+			DIR_XZFPQ=1;
 		}
 
-		else if(strstr((const char *)USART2_RX_BUF,(const char *)"pcf0"))      //电机         
+		else if(strstr((const char *)USART2_RX_BUF,(const char *)"xzfp0"))      //电机         
 		{
-			PCF8574_WriteBit(EXIO1,0);	       //继电器
-			PCF8574_WriteBit(EXIO2,0);	       //继电器
-			PCF8574_WriteBit(EXIO3,0);	       //继电器
-			PCF8574_WriteBit(EXIO4,0);	       //继电器
+			DIR_XZFPQ=0;
 		}
 		
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"Hang1_1"))      //电机         
