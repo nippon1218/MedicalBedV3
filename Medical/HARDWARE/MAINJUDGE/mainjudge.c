@@ -302,7 +302,8 @@ void WifiReceiveJudge(void)
 		if(strstr((const char *)UART4_RX_BUF,(const char *)"WashletAutoPhone"))        //自动坐便
 		{
 			if(ESP8266_Get_ID())	//接收到当前设备发送的指令后，立马给其返回一个Received指令
-			Washlet_Auto();						
+			//Washlet_Auto();	
+			WashLet_V2(1,32950);			
 		}
 
 		if(strstr((const char *)UART4_RX_BUF,(const char *)"ArmLeftMuscleMassager"))   //左臂肌肉按摩
@@ -397,7 +398,8 @@ void WifiReceiveJudge(void)
 		if(strstr((const char *)UART4_RX_BUF,(const char *)"WashletAutoGB"))   //自动坐便
 		{
 			if(ESP8266_Get_ID())	//接收到当前设备发送的指令后，立马给其返回一个Received指令
-			Washlet_Auto();					
+			//Washlet_Auto();
+			WashLet_V2(1,32950);			
 		}						
 		
 		if(strstr((const char *)UART4_RX_BUF,(const char *)"LockGB"))           //键锁
