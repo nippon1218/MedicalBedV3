@@ -15460,11 +15460,11 @@ void Uart_Swash_Auto(void)
 	if((lock_flag==1)&&(1==washlet_flag))		
 	{						
 //		//冲洗之前检测水位若在正常水位以下，发出报警声，并等待水箱注水
-//		if(0==Liq_Sensor)  
-//		{
-//			delay_ms(100);
-//			u2_printf("LiquidLevellow");  //发送给上位机指令信号，表示此时水位偏低
-//		}
+		if(0==Liq_Sensor)  
+		{
+			delay_ms(100);
+			u2_printf("LiquidLevellow");  //发送给上位机指令信号，表示此时水位偏低
+		}
 //		while(0==Liq_Sensor)                //水箱注水后，才能继续往下执行
 //		{
 //			PCF8574_WriteBit(BEEP_IO,0);	//控制蜂鸣器报警	
@@ -15486,10 +15486,10 @@ void Uart_Swash_Auto(void)
 		RELAY6=1;                            //继电器得电
 		//喷水冲洗
 		DIR_SB=1;                            //水泵开启PB12	
-//		if(0==swash_dry_runed_pulse)
-//		{
-//			u2_printf("Cartoon_Push_Rod_Swash_1");
-//		}
+		if(0==swash_dry_runed_pulse)
+		{
+			u2_printf("Cartoon_Push_Rod_Swash_1");
+		}
 //		for(i=0;i<2*swash_dry_time;i++)     //冲洗烘干推杆自动循环冲洗swash_dry_time分钟
 //		{
 //			flag=!flag;
