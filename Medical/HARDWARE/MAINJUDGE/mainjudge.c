@@ -1389,7 +1389,7 @@ void Usart2ReceiveJudge(void)
 
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"xzfp1"))      //电机         
 		{
-			DIR_XZFPQ=1;
+			DIR_XZFPQ=91;
 		}
 
 		else if(strstr((const char *)USART2_RX_BUF,(const char *)"xzfp0"))      //电机         

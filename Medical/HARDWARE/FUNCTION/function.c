@@ -15460,29 +15460,29 @@ void Uart_Swash_Auto(void)
 	if((lock_flag==1)&&(1==washlet_flag))		
 	{						
 //		//冲洗之前检测水位若在正常水位以下，发出报警声，并等待水箱注水
-		if(0==Liq_Sensor)  
-		{
-			delay_ms(100);
-			u2_printf("LiquidLevellow");  //发送给上位机指令信号，表示此时水位偏低
-		}
-		while(0==Liq_Sensor)                //水箱注水后，才能继续往下执行
-		{
-			PCF8574_WriteBit(BEEP_IO,0);	//控制蜂鸣器报警	
-			if(USART2_RX_LEN&0x8000)
-			{
-				len=USART2_RX_LEN&0x3fff;				
-				USART2_RX_BUF[len]=0;
-				if(strstr((const char *)USART2_RX_BUF,(const char *)"BeepOff"))
-				{
-					PCF8574_WriteBit(BEEP_IO,1);                     //蜂鸣器停止报警
-					memset(USART2_RX_BUF,0,USART2_MAX_RECV_LEN);     //清空接收寄存器
-					USART2_RX_LEN=0;
-					break;
-				}
-			}		
-		}
-		while(0==Liq_Sensor);                //等待水箱注满
-		PCF8574_WriteBit(BEEP_IO,1);
+//		if(0==Liq_Sensor)  
+//		{
+//			delay_ms(100);
+//			u2_printf("LiquidLevellow");  //发送给上位机指令信号，表示此时水位偏低
+//		}
+//		while(0==Liq_Sensor)                //水箱注水后，才能继续往下执行
+//		{
+//			PCF8574_WriteBit(BEEP_IO,0);	//控制蜂鸣器报警	
+//			if(USART2_RX_LEN&0x8000)
+//			{
+//				len=USART2_RX_LEN&0x3fff;				
+//				USART2_RX_BUF[len]=0;
+//				if(strstr((const char *)USART2_RX_BUF,(const char *)"BeepOff"))
+//				{
+//					PCF8574_WriteBit(BEEP_IO,1);                     //蜂鸣器停止报警
+//					memset(USART2_RX_BUF,0,USART2_MAX_RECV_LEN);     //清空接收寄存器
+//					USART2_RX_LEN=0;
+//					break;
+//				}
+//			}		
+//		}
+////		while(0==Liq_Sensor);                //等待水箱注满
+//		PCF8574_WriteBit(BEEP_IO,1);
 		RELAY6=1;                            //继电器得电
 		//喷水冲洗
 		DIR_SB=1;                            //水泵开启PB12	
