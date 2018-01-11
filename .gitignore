@@ -19,6 +19,9 @@
 *.TMP
 *._ia
 *.map
+*.uvguix.*
+*.uvoptx
+*.uvprojx
 Medical/OBJ/HAL_ESP8266_429.map
 Medical/USER/HAL_ESP8266_429.uvguix.japansony
 Medical/USER/HAL_ESP8266_429.uvguix.japansony
