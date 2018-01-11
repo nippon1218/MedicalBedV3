@@ -29,8 +29,6 @@ BackDownNew+85
 LegUpUpNew+30
 LegUpDownNew+30
 
-
-
 BackUpPhone
 BackDownPhone
 LegUpUpPhone
