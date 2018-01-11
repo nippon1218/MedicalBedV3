@@ -185,6 +185,5 @@ void KeyCheckAll(void)
 	{u2_printf("M6ALM\r\n");}
 	if(KeyCheck(M7TIM))
 	{u2_printf("M7TIM\r\n");}
-	
 }
 
