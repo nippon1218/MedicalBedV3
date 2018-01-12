@@ -92,8 +92,8 @@ int main(void)
 //			Uart_Push_Rod_Swash(0,25000);  //冲洗烘干推杆缩回
 //			RELAY6=0;	 
 //			washlet_flag=0;
-
 //		GDSCheckAllAlm(2);
+
     while(1)
     {
 			WifiReceiveJudge();		//遥控器接收判断函数
