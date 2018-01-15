@@ -60,7 +60,6 @@ int main(void)
 	u8 key;                                //按键扫描返回值
 	u8 mode_buf[2];                        //存储WiFi模式，AP还是STA模式
 	u8 angle_buf[14];                      //存储上位设定角度值
-
 	AllInit();
 //	Read_Angle();                          //读取上位机设定角度值
 	

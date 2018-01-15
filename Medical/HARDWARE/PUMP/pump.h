@@ -8,11 +8,11 @@
 
 //#define DIR_SB     PEout(3)           //水泵PB12,原来的线
 
-#define DIR_QB     PHout(2)           //气泵
+#define DIR_QB     PHout(3)           //气泵
 #define DIR_HG     PBout(10)          //烘干
 #define DIR_XZFPQ   PEout(3)          //旋转分配器
 //#define DIR_JRAM   PBout(11)          //按摩
-#define DIR_JR     PHout(3)           //加热-继电器
+#define DIR_JR     PHout(2)           //加热-继电器
 #define DIR_WD     PHout(8)           //温度传感器
 
 void Pump_Init(void);                 //水箱IO口初始化
